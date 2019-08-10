@@ -16,8 +16,13 @@
   "bugs": {
     "url": "https://github.com/Kikobeats/is-cdn-url/issues"
   },
-  "keywords": [],
-  "dependencies": {},
+  "keywords": [
+    "url",
+    "cdn",
+    "uri",
+    "is",
+    "check"
+  ],
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
