@@ -34,7 +34,8 @@
     "prettier-standard": "latest",
     "standard": "latest",
     "standard-markdown": "latest",
-    "standard-version": "latest"
+    "standard-version": "latest",
+    "ci-publish": "latest"
   },
   "engines": {
     "node": ">= 8"
@@ -43,14 +44,14 @@
     "clean": "rm -rf node_modules",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard-markdown README.md && standard",
-    "postrelease": "npm run release:tags && npm run release:github && npm publish",
-    "prerelease": "git-dirty && npm run update:check && npm test && git-authors-cli",
+    "postrelease": "npm run release:tags && npm run release:github && ci-publish",
+    "prerelease": "npm run update:check",
     "pretest": "npm run lint",
-    "release": "git-authors-cli finepack && git add package.json && standard-version -a",
+    "release": "standard-version -a",
     "release:github": "conventional-github-releaser -p angular",
-    "release:tags": "git push --follow-tags origin master",
+    "release:tags": "git push --follow-tags origin HEAD:master",
     "test": "nyc ava",
-    "update": "ncu -a",
+    "update": "ncu -u",
     "update:check": "ncu -- --error-level 2"
   },
   "license": "MIT",
