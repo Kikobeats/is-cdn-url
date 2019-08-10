@@ -2,7 +2,7 @@
   "name": "is-cdn-url",
   "description": "Check if an URL is from CDN",
   "homepage": "https://nicedoc.io/Kikobeats/is-cdn-url",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "author": {
     "name": "Kiko Beats",
