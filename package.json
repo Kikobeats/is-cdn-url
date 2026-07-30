@@ -1,7 +1,7 @@
 {
   "name": "is-cdn-url",
-  "description": "Check if an URL is from CDN",
-  "homepage": "https://nicedoc.io/Kikobeats/is-cdn-url",
+  "description": "Check whether a URL belongs to a known CDN host (Cloudflare, Fastly, Akamai, CloudFront, and more).",
+  "homepage": "https://github.com/Kikobeats/is-cdn-url",
   "version": "1.0.0",
   "main": "index.js",
   "author": {
@@ -17,26 +17,29 @@
     "url": "https://github.com/Kikobeats/is-cdn-url/issues"
   },
   "keywords": [
-    "url",
     "cdn",
+    "url",
     "uri",
+    "check",
     "is",
-    "check"
+    "cloudflare",
+    "fastly",
+    "akamai",
+    "cloudfront",
+    "hostname"
   ],
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-    "ava": "latest",
-    "conventional-github-releaser": "latest",
+    "c8": "latest",
+    "github-generate-release": "latest",
     "coveralls": "latest",
     "finepack": "latest",
     "git-authors-cli": "latest",
     "git-dirty": "latest",
-    "husky": "latest",
-    "lint-staged": "latest",
-    "npm-check-updates": "latest",
+    "simple-git-hooks": "latest",
+    "nano-staged": "latest",
     "nyc": "latest",
-    "prettier-standard": "latest",
     "standard": "latest",
     "standard-markdown": "latest",
     "standard-version": "latest",
@@ -50,28 +53,28 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "standard-markdown README.md && standard",
     "postrelease": "npm run release:tags && npm run release:github && ci-publish",
-    "prerelease": "npm run update:check",
     "pretest": "npm run lint",
     "release": "standard-version -a",
-    "release:github": "conventional-github-releaser -p angular",
+    "release:github": "github-generate-release",
     "release:tags": "git push --follow-tags origin HEAD:master",
-    "test": "nyc ava",
-    "update": "ncu -u",
-    "update:check": "ncu -- --error-level 2"
+    "test": "c8 ava"
   },
   "license": "MIT",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+    ],
+    "rules": {
+      "body-max-line-length": [
+        0
+      ]
     }
   },
-  "lint-staged": {
+  "simple-git-hooks": {
+    "commit-msg": "npx commitlint --edit",
+    "pre-commit": "npx nano-staged"
+  },
+  "nano-staged": {
     "package.json": [
       "finepack",
       "git add"
